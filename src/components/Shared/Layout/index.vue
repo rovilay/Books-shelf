@@ -1,11 +1,29 @@
 <template>
     <div class="container structure">
-        <header v-if="showTopHeader" class="section">header</header>
+        <header v-if="showTopHeader" class="section header">
+            <NavBar />
+        </header>
         <main class="section main-content" :class="{ 'full-page': !showTopHeader }">
             <div class="container">
                 <div class="row content">
-                    <div v-if="!showTopHeader" class="col m2 nav-bar-vertical">1</div>
+                    <div v-if="!showTopHeader" class="col m2 nav-bar-vertical">
+                        <SideBar />
+                    </div>
                     <div class="col m10 main" :class="{ 'm12': showTopHeader }">
+                        <div class="search-bar">
+                            <!-- <label for="inp" class="inp">
+                                <input type="text" id="inp" class="browser-default">
+                                <span class="label"><i class="fas fa-search" /></span>
+                                <span class="border"></span>
+                            </label> -->
+                            <div class="links">
+                                <ul>
+                                    <li>favourite</li>
+                                    <li>Best Selling</li>
+                                    <li>New Release</li>
+                                </ul>
+                            </div>
+                        </div>
                         <slot name="mainContent"></slot>
                     </div>
                 </div>
@@ -22,8 +40,12 @@
 </template>
 
 <script>
+import NavBar from './NavBar.vue';
+import SideBar from './SideBar.vue';
+
 export default {
-  name: 'Structure',
+  name: 'Layout',
+  components: { NavBar, SideBar },
   props: {
       showTopHeader: { type: Boolean, required: true, default: false }
   }

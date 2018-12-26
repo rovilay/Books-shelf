@@ -15,6 +15,25 @@
 header {
     height: 10vh;
     width: 100%;
+    background: snow;
+    border-bottom: 2px solid #70D179;
+
+    .header-container {
+        height: 100%;
+        width: 80%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .logo {
+            color: #70D179;
+            font-size: 35px;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-family: 'Lobster', cursive;
+            cursor: pointer;
+        }
+    }
 }
 
 main.section.main-content {
@@ -32,12 +51,106 @@ main.section.main-content {
                 width: 100%;
                 .nav-bar-vertical {
                     height: 100%;
-                    background: #0E0206
+                    background: #0E0206;
+                    display: flex;
+                    flex-direction: column;
+                    .side-bar {
+                        .logo {
+                            margin: 10px 0;
+                            color: #70D179;
+                            font-size: 30px;
+                            text-transform: uppercase;
+                            font-weight: 800;
+                            font-family: 'Lobster', cursive;
+                            cursor: pointer;
+                            border: none;
+                            border-bottom: 1px solid #333333;
+                            padding: 3px 0;
+                        }
+                        .menu {
+                            border: 1px soid green;
+                            margin: 50px 0;
+                            ul {
+                                li {
+                                    border: none;
+                                    text-align: left;
+                                    font-size: 16px;
+                                    font-weight: 600;
+                                    cursor: pointer;
+                                    padding: 10px;
+                                    &:hover, &:active {
+                                        border: none;
+                                        border-left: 3px solid #70D179;
+                                        color: #70D179;
+                                        -webkit-transition: border-left 2s ease-in-out 0s;
+                                        -moz-transition: border-left 2s ease-in-out 0s;
+                                        -o-transition: border-left 2s ease-in-out 0s;
+                                        transition: border-left 2s ease-in-out 0s;
+                                        cursor: pointer;
+                                    }
+                                    span {
+                                       margin: 15px; 
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 .main {
                     height: 100%;
-                    overflow: scroll;
-                    background: rgb(146, 28, 67)
+                    background: snow;
+                    color: #0E0206;
+                    padding: 0;
+                    .search-bar {
+                        background: snow;
+                        height: 8%;
+                        width: 100%;
+                        box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 0 10%;
+                        .search {
+                            background: pink;
+                            height: 100%;
+                        }
+                        .links {
+                            height: 100%;
+                            width: 100%;
+                            ul {
+                                list-style-type: none;
+                                margin: 0;
+                                padding: 0;
+                                height: 100%;
+                                li {
+                                    display: inline-block;
+                                    margin: auto 10px;
+                                    text-transform: capitalize;
+                                    font-size: 16px;
+                                    font-weight: 600;
+                                    height: 100%;
+                                    padding: 15px 10px;
+                                    text-align: center;
+                                    color: #70D179;
+                                    &:hover {
+                                        border: none;
+                                        border-bottom: 3px solid #70D179;
+                                        color: #70D179;
+                                        -webkit-transition: border-bottom 2s ease-in-out 0s;
+                                        -moz-transition: border-bottom 2s ease-in-out 0s;
+                                        -o-transition: border-bottom 2s ease-in-out 0s;
+                                        transition: border-bottom 2s ease-in-out 0s;
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .content-main {
+                        overflow: scroll;
+                        height: 92%;
+                        font-size: 26px;
+                    }
                 }
             }
         }
@@ -49,6 +162,9 @@ main.section.full-page {
 
 footer.page-footer {
     height: 5vh;
+    background-color: #70D179;
+    font-size: 16px;
+    font-weight: 600;
     .footer-copyright {
         min-height: 100%;
     }
