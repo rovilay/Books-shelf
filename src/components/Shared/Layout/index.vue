@@ -12,10 +12,22 @@
                     <div class="col m10 main" :class="{ 'm12': showTopHeader }">
                         <div v-if="!showTopHeader" class="search-bar">
                             <div class="links">
-                                <ul>
-                                    <li>favourite</li>
-                                    <li>Best Selling</li>
-                                    <li>New Release</li>
+                                <ul>       
+                                    <li :class="{'bs-active': compare('Favourite')}">
+                                        <router-link :to="{name: 'Favourite'}">
+                                            favourites
+                                        </router-link>
+                                    </li>
+                                    <li :class="{'bs-active': compare('BestSellers')}">
+                                        <router-link :to="{name: 'BestSellers'}">
+                                            Best Sellers
+                                        </router-link>
+                                    </li>
+                                    <li :class="{'bs-active': compare('NewReleases')}">
+                                        <router-link :to="{name: 'NewReleases'}">
+                                            New Releases
+                                        </router-link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -41,6 +53,11 @@ import SideBar from './SideBar.vue';
 export default {
   name: 'Layout',
   components: { NavBar, SideBar },
+  methods: {
+        compare(routeName) {
+            return this.$route.name === routeName;
+        }
+  },
   props: {
       showTopHeader: { type: Boolean, default: false }
   }

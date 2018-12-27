@@ -7,17 +7,23 @@
         </div>
         <div class="menu">
             <ul>
-                <li>
-                    <i class="fas fa-portrait"></i>
-                    <span>Profile</span>
+                <li :class="{'bs-active': compare('Profile')}">
+                    <router-link :to="{name: 'Profile'}">
+                        <i class="material-icons">person_outline</i>
+                        <span>Profile</span>
+                    </router-link>
                 </li>
-                <li>
-                    <i class="fas fa-home"></i>
-                    <span>Home</span>
+                <li :class="{'bs-active': compare('Dashboard')}">
+                    <router-link :to="{name: 'Dashboard'}">
+                        <i class="material-icons">home</i>
+                        <span>Home</span>
+                    </router-link>
                 </li>
-                <li>
-                    <i class="fas fa-book"></i>
-                    <span>Your Shelf</span>
+                <li :class="{'bs-active': compare('Shelf')}">
+                    <router-link :to="{name: 'Shelf'}">
+                        <i class="material-icons">sort</i>
+                        <span>My Shelf</span>
+                    </router-link>
                 </li>
             </ul>
         </div>
@@ -27,6 +33,22 @@
 <script>
 export default {
     name: 'SideBar',
+    methods: {
+        compare(routeName) {
+            return this.$route.name === routeName;
+        }
+    },
 }
 </script>
 
+<style lang="scss" scoped>
+    .side-bar {
+        .menu {
+            li {
+                a.router-link-exact-active {
+                    color: #70D179;
+                }
+            }
+        }
+    }
+</style>
