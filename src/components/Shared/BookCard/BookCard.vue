@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import bookValidator from '../../../Utils';
+import { bookValidator } from '../../../Utils';
 import image1 from '../../../assets/images/img1.jpeg';
 import image2 from '../../../assets/images/img2.jpeg';
 import image3 from '../../../assets/images/img3.jpeg';

@@ -38,6 +38,8 @@ header {
 main.section.main-content {
         height: 85vh;
         width: 100%;
+        overflow: scroll;
+        background: snow;
         .container {
             padding: 0px;
             height: 100%;

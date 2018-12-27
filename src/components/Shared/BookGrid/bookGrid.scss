@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 0 5px;
+    padding: 0 10px;
     .book {
         width: 30%;
         height: auto;
@@ -14,19 +14,26 @@
         &:last-child {
             align-self: flex-start;
         }
-    }
-    .book-title {
-        text-transform: capitalize;
-        text-align: left;
-        margin: 5px auto;
-        padding: 5px 10px;
-        cursor: pointer;
-        &:hover {
-            text-decoration: underline;
+        .book-title {
+            text-transform: capitalize;
+            text-align: left;
+            margin: 5px auto;
+            padding: 5px 1px;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        .book-price {
+            text-align: left;
+            margin: 0px auto;
+            padding: 0px 1px;
+            font-size: 12px;
         }
     }
 }
 
-.book-grid.full {
+.bs-full {
     width: 82%;
+    padding: 0 5px;
 }

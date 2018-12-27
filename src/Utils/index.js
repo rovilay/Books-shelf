@@ -1,4 +1,4 @@
-const bookValidator = function(book) {
+export const bookValidator = function(book) {
     const bookKeys = new Set(Object.keys(book));
     const validKeys = new Set(['id', 'name', 'price', 'isbn', 'image']);
     const intersection = new Set(
@@ -7,4 +7,6 @@ const bookValidator = function(book) {
     return intersection.size === validKeys.size
 }
 
-export default bookValidator;
+export const currencyFilter = (amount, symbol) => {
+    return `${symbol}${amount.toFixed(2)}`;
+}

@@ -1,9 +1,13 @@
 <template>
-    <div class="books-grid" :class="{ 'full': fullWidth }" slot="mainContent">
-        <div v-for="book in books" class="book" :key="book.id" >
-            <BookCard :book="book" />
-            <div class="book-title text-ellipsis">
-                {{book.name}}
+    <div>
+        <h3 v-if="gridTitle" slot="mainContent" class="bs-title">{{gridTitle}}</h3>
+        <div class="books-grid" :class="{ 'bs-full': fullWidth }" slot="mainContent">
+            <div v-for="book in books" class="book" :key="book.id" >
+                <BookCard :book="book" />
+                <div class="book-title text-ellipsis">
+                    {{book.name}}
+                </div>
+                <p class="book-price">{{book.price | currency('$')}}</p>
             </div>
         </div>
     </div>
@@ -22,6 +26,7 @@ export default {
           type: Array,
           required: true
       },
+      gridTitle: { type: String },
       fullWidth: { type: Boolean, default: false }
   },
   components: { BookCard }
