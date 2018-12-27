@@ -1,6 +1,11 @@
 <template>
     <div>
-        <h3 v-if="gridTitle" slot="mainContent" class="bs-title">{{gridTitle}}</h3>
+        <h3 
+            v-if="gridTitle" slot="mainContent" class="bs-title" 
+            :class="customTitleClass"
+        >
+            {{gridTitle}}
+        </h3>
         <div class="books-grid" :class="{ 'bs-full': fullWidth }" slot="mainContent">
             <div v-for="book in books" class="book" :key="book.id" >
                 <BookCard :book="book" />
@@ -27,7 +32,8 @@ export default {
           required: true
       },
       gridTitle: { type: String },
-      fullWidth: { type: Boolean, default: false }
+      fullWidth: { type: Boolean, default: false },
+      customTitleClass: { type: String, default: '' }
   },
   components: { BookCard }
 }

@@ -7,7 +7,7 @@
             </button>
         </div>
         <BookGrid
-            gridTitle="New Arrivals" :books="newArrivals" 
+            gridTitle="New Releases" :books="newReleases" 
             slot="mainContent" fullWidth 
         />
         <BookGrid
@@ -28,7 +28,7 @@ export default {
       return { showTopHeader: true, bookData }
   },
   computed: {
-      newArrivals() {
+      newReleases() {
           return this.bookData.slice(0, 6)
       },
       bestSellers() {

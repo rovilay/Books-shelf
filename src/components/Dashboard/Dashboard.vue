@@ -1,24 +1,47 @@
 <template>
-    <Layout :show-top-header="showTopHeader">
-        <div slot="mainContent" class="content-main">
-            <BookGrid :books="bookData" slot="mainContent" />
-        </div>
-    </Layout>
+    <div class="dashboard">
+        <BookGrid
+            :books="newReleases" gridTitle="new releases" 
+            customTitleClass="dashboard-title"
+        />
+        <BookGrid
+            :books="favourites" gridTitle="favourites"
+            customTitleClass="dashboard-title"
+        />
+        <BookGrid
+            :books="bestSellers" gridTitle="best sellers"
+            customTitleClass="dashboard-title"
+        />
+    </div>
 </template>
 
 <script>
-import Layout from '../Shared/Layout/index.vue';
 import BookGrid from '../Shared/BookGrid/BookGrid.vue';
 import bookData from '../../data/mockData';
 
 export default {
-  name: 'Dashboard',
-  data() {
-      return { showTopHeader: false, bookData }
+    name: 'Dashboard',
+    data() {
+        return { bookData }
+    },
+    computed: {
+        newReleases() {
+          return this.bookData.slice(0, 7)
+        },
+        bestSellers() {
+          return this.bookData.slice(6, 11)
+        },
+        favourites() {
+          return this.bookData.slice(7)
+        }
   },
-  components: { Layout, BookGrid }
+    components: { BookGrid }
 }
 </script>
 
 <style lang="scss">
+.dashboard-title {
+    width: 100%;
+    padding-left: 22px;
+}
 </style>
