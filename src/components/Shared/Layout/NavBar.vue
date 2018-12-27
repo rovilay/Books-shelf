@@ -6,10 +6,10 @@
             </router-link>
         </div>
         <div class="auth">
-            <button class="login waves-effect waves-light btn bs-btn-light">
+            <button @click="pushToLogin" class="login waves-effect waves-light btn bs-btn-light">
                 Log in
             </button>
-            <button class="signup waves-effect waves-light btn bs-btn">
+            <button @click="pushToSignup" class="signup waves-effect waves-light btn bs-btn">
                 Sign up
             </button>
         </div>
@@ -19,7 +19,25 @@
 
 <script>
 export default {
-    name: 'NavBar'
+    name: 'NavBar',
+    methods: {
+        pushToLogin() {
+            this.$router.push({
+                name: 'Login',
+                params: {
+                    id: 'ogo',
+                },
+            });
+        },
+        pushToSignup() {
+            this.$router.push({
+                name: 'Signup',
+                params: {
+                    id: 'ogo',
+                },
+            });
+        },
+    }
 }
 </script>
 

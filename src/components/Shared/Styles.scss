@@ -204,3 +204,41 @@ a {
   height: auto;
   padding-top: 30px;
 }
+
+input:focus {
+  border-bottom: 1px solid #70D179 !important;
+  -webkit-box-shadow: 0 1px 0 0 #70D179 !important;
+  box-shadow: 0 1px 0 0 #70D179 !important;
+  + label {
+    color: #70D179 !important;
+  }
+}
+
+
+
+.default-color {
+  color: #70D179 !important;
+}
+
+.danger {
+  color: rgb(243, 114, 114);
+  font-size: 12px;
+}
+
+// input:not([type]):focus:not([readonly]), 
+// input[type=text]:not(.browser-default):focus:not([readonly]), 
+// input[type=password]:not(.browser-default):focus:not([readonly]), 
+// input[type=email]:not(.browser-default):focus:not([readonly]), 
+// input[type=url]:not(.browser-default):focus:not([readonly]), 
+// input[type=time]:not(.browser-default):focus:not([readonly]), 
+// input[type=date]:not(.browser-default):focus:not([readonly]), 
+// input[type=datetime]:not(.browser-default):focus:not([readonly]), 
+// input[type=datetime-local]:not(.browser-default):focus:not([readonly]), 
+// input[type=tel]:not(.browser-default):focus:not([readonly]), 
+// input[type=number]:not(.browser-default):focus:not([readonly]), 
+// input[type=search]:not(.browser-default):focus:not([readonly]), 
+// textarea.materialize-textarea:focus:not([readonly]) {
+//   border-bottom: 1px solid #26a69a;
+//   -webkit-box-shadow: 0 1px 0 0 #26a69a;
+//   box-shadow: 0 1px 0 0 #26a69a;
+// }
