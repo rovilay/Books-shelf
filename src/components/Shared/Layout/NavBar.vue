@@ -1,6 +1,10 @@
 <template>
     <div class="header-container">
-        <div class="logo">Book-Shelf</div>
+        <div class="logo">
+            <router-link to="/">
+                Book-Shelf
+            </router-link>
+        </div>
         <div class="auth">
             <button class="login waves-effect waves-light btn bs-btn-light">
                 Log in

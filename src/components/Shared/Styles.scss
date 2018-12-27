@@ -4,6 +4,10 @@ body {
     font-size: 16px;
   }
 
+a {
+  color: #70D179;
+}
+
 #app {
     font-family: "Open Sans", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -177,3 +181,18 @@ body {
     transform: scaleX(1);
   }
   
+
+.books-container {
+  width: 100%;
+  background: #0077FF;
+}
+  
+::-webkit-scrollbar {
+  display: none;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
