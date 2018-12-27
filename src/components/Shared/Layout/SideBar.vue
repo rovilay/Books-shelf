@@ -1,6 +1,10 @@
 <template>
     <div class="side-bar">
-        <div class="logo">Book-Shelf</div>
+        <div class="logo">
+            <router-link :to="{name: 'Home'}">
+                Book-Shelf
+            </router-link>
+        </div>
         <div class="menu">
             <ul>
                 <li>

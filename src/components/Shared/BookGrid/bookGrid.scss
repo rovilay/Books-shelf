@@ -1,0 +1,32 @@
+.books-grid {
+    height: 100%;
+    overflow: scroll;
+    margin: auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 5px;
+    .book {
+        width: 30%;
+        height: auto;
+        padding: 25px 0;
+        &:last-child {
+            align-self: flex-start;
+        }
+    }
+    .book-title {
+        text-transform: capitalize;
+        text-align: left;
+        margin: 5px auto;
+        padding: 5px 10px;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.book-grid.full {
+    width: 82%;
+}

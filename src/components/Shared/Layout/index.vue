@@ -1,7 +1,7 @@
 <template>
-    <div class="container structure">
+    <div class="container layout structure">
         <header v-if="showTopHeader" class="section header">
-            <NavBar />
+                <NavBar />
         </header>
         <main class="section main-content" :class="{ 'full-page': !showTopHeader }">
             <div class="container">
@@ -10,12 +10,7 @@
                         <SideBar />
                     </div>
                     <div class="col m10 main" :class="{ 'm12': showTopHeader }">
-                        <div class="search-bar">
-                            <!-- <label for="inp" class="inp">
-                                <input type="text" id="inp" class="browser-default">
-                                <span class="label"><i class="fas fa-search" /></span>
-                                <span class="border"></span>
-                            </label> -->
+                        <div v-if="!showTopHeader" class="search-bar">
                             <div class="links">
                                 <ul>
                                     <li>favourite</li>
@@ -32,7 +27,7 @@
         <footer class="section page-footer">
             <div class="footer-copyright">
             <div class="container">
-                Books-Shelf © 2018
+                Book-Shelf © 2018
             </div>
             </div>
         </footer>
@@ -47,7 +42,7 @@ export default {
   name: 'Layout',
   components: { NavBar, SideBar },
   props: {
-      showTopHeader: { type: Boolean, required: true, default: false }
+      showTopHeader: { type: Boolean, default: false }
   }
 }
 </script>
