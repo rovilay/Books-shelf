@@ -8,16 +8,15 @@
         </h3>
         <div class="books-grid" :class="{ 'bs-full': fullWidth }" slot="mainContent">
             <div v-for="book in books" class="book" :key="book.id" >
-                <BookCard :book="book" />
+                <BookCard :book="book" @modalToOpen="handleModalEvent" />
                 <div class="book-title text-ellipsis">
-                    {{book.name}}
+                    {{book.title}}
                 </div>
                 <p class="book-price">{{book.price | currency('$')}}</p>
             </div>
         </div>
     </div>
 </template>
-
 <script>
 import BookCard from '../BookCard/BookCard.vue';
 
@@ -35,7 +34,12 @@ export default {
       fullWidth: { type: Boolean, default: false },
       customTitleClass: { type: String, default: '' }
   },
-  components: { BookCard }
+  components: { BookCard },
+    methods: {
+        handleModalEvent: function(modalType, book) {
+            this.$emit('modalToOpen', modalType, book);
+        }
+    }
 }
 </script>
 
