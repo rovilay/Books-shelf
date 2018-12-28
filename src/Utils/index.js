@@ -1,6 +1,6 @@
 export const bookValidator = function(book) {
     const bookKeys = new Set(Object.keys(book));
-    const validKeys = new Set(['id', 'name', 'price', 'isbn', 'image']);
+    const validKeys = new Set(['id', 'title', 'price', 'isbn', 'image']);
     const intersection = new Set(
         [...bookKeys].filter(key => validKeys.has(key)));
     
@@ -10,3 +10,4 @@ export const bookValidator = function(book) {
 export const currencyFilter = (amount, symbol) => {
     return `${symbol}${amount.toFixed(2)}`;
 }
+

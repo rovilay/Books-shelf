@@ -4,7 +4,10 @@
             <a class="btn-floating btn-small waves-effect waves-light red">
                 <i class="material-icons">{{fav}}</i>
             </a>
-            <a class="btn-floating btn-small waves-effect waves-light red">
+            <a
+                class="btn-floating btn-small waves-effect waves-light red"
+                @click="openEditModal"
+            >
                 <i class="material-icons">edit</i>
             </a>
             <a class="btn-floating btn-small waves-effect waves-light red">
@@ -26,7 +29,8 @@ export default {
     name: 'BookCard',
     data() {
         return {
-            fav: 'favorite_border'
+            fav: 'favorite_border',
+            bookId: this.book.id,
         }
     },
     props: {
@@ -39,6 +43,9 @@ export default {
     methods: {
         getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
+        },
+        openEditModal: function() {
+            this.$emit('modalToOpen', 'editBookModal', this.book)
         }
     },
     computed: {
@@ -46,8 +53,11 @@ export default {
             const images = [image1, image2, image3, image4, image5];
             const randInt = this.getRandomInt(images.length);
             return images[randInt]
+        },
+        modal() {
+            return document.getElementById(this.book.id)
         }
-    }
+    },
 }
 </script>
 

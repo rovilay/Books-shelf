@@ -1,7 +1,7 @@
 <template>
     <div class="container layout structure">
         <header v-if="showTopHeader" class="section header">
-                <NavBar />
+            <NavBar />
         </header>
         <main class="section main-content" :class="{ 'full-page': !showTopHeader }">
             <div class="container">
@@ -32,6 +32,16 @@
                             </div>
                         </div>
                         <slot name="mainContent"></slot>
+                        <div v-if="showAddBtn" data-target="modal-1"
+                            class="fixed-action-btn bs-float-btn"
+                            @click="openAddModal"
+                        >
+                            <a
+                                class="waves-effect waves-light btn-floating btn-large bs-color-bg"
+                            >
+                                <i class="large material-icons">add</i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,6 +59,7 @@
 <script>
 import NavBar from './NavBar.vue';
 import SideBar from './SideBar.vue';
+// import Modal from '../Modal/index.vue';
 
 export default {
   name: 'Layout',
@@ -56,10 +67,14 @@ export default {
   methods: {
         compare(routeName) {
             return this.$route.name === routeName;
+        },
+        openAddModal: function() {
+            this.$emit('modalToOpen', 'addBookModal')
         }
   },
   props: {
-      showTopHeader: { type: Boolean, default: false }
+      showTopHeader: { type: Boolean, default: false },
+      showAddBtn: { type: Boolean, default: false }
   }
 }
 </script>
