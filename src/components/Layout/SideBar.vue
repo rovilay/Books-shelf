@@ -7,12 +7,6 @@
         </div>
         <div class="menu">
             <ul>
-                <li :class="{'bs-active': compare('Profile')}">
-                    <router-link :to="{name: 'Profile'}">
-                        <i class="material-icons">person_outline</i>
-                        <span>Profile</span>
-                    </router-link>
-                </li>
                 <li :class="{'bs-active': compare(
                         ['Dashboard', 'Favourite', 'NewReleases', 'BestSellers'])
                     }"
@@ -20,6 +14,12 @@
                     <router-link :to="{name: 'Dashboard'}">
                         <i class="material-icons">home</i>
                         <span>Home</span>
+                    </router-link>
+                </li>
+                <li :class="{'bs-active': compare('Explore')}">
+                    <router-link :to="{name: 'Explore'}">
+                        <i class="material-icons">search</i>
+                        <span>Explore</span>
                     </router-link>
                 </li>
                 <li :class="{'bs-active': compare('Shelf')}">

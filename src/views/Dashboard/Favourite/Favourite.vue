@@ -1,6 +1,6 @@
 <template>
     <BookGrid
-        :books="bookData" gridTitle="favourites" 
+        :books="favourites" gridTitle="favourites" 
         customTitleClass="dashboard-title"
         @modalToOpen="handleModalEvent"
         noBooksMessage="No favourite book yet!"
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import BookGrid from '../../../components/BookGrid/BookGrid.vue';
 import modalMixins from '../../../mixins/modal-mixins';
 import authMixins from '../../../mixins/auth-mixins';
@@ -19,7 +19,8 @@ export default {
     mixins: [modalMixins, authMixins],
     components: { BookGrid },
     computed: {
-        ...mapState('books', { bookData: 'books', bookLoading: 'loading' }),
+        ...mapState('books', { bookLoading: 'loading' }),
+        ...mapGetters('books', { favourites: 'getFavourites' }),
     },
     methods: {
         ...mapActions('books', { fetchFavBooks: 'fetchFavBooksAction' })

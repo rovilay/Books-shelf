@@ -28,6 +28,36 @@ const mutations = {
         state.success = false;
         state.message = ''
     },
+    favBookSuccess: function(state, response) {
+        const { book_data, success, message } = response;
+        const updated_books = state.books.map(book => {
+            if (book.id === book_data.id) book.favourite = true;
+            return book;
+        });
+        state.books = updated_books;
+        state.success = success;
+        state.message = message;
+        state.loading = false;
+        state.errors = null;
+    },
+    removeFavBookSuccess: function(state, response) {
+        const { bookId, success, message } = response;
+        const updated_books = state.books.map(book => {
+            if (book.id === bookId) book.favourite = undefined;
+            return book;
+        });
+        state.books = updated_books;
+        state.success = success;
+        state.message = message;
+        state.loading = false;
+        state.errors = null;
+    },
+    favBookFailure: function(state, error) {
+        state.errors = error;
+        state.loading = false;
+        state.success = false;
+        state.message = ''
+    },
 };
 
 const actions = {
@@ -52,11 +82,36 @@ const actions = {
             const url = '/books/favourites';
             const response = await server.get(url);
             const { book_data, success, message } = response.data;
-            const a = JSON.parse(book_data);
-            return commit('fetchBooksSuccess', { book_data: a, success, message });
+            return commit('fetchBooksSuccess', { book_data, success, message });
         } catch (error) {
             const errorMsg = apiErrorHandler(error);
             commit('fetchBooksFailure', errorMsg);
+            toast(errorMsg, 'error');
+        }
+    },
+    addFavBookAction: async function({ commit }, { id }) {
+        try {
+            const server = instance();
+            const url = `/books/${id}/favourites`;
+            const response = await server.post(url);
+            const { book_data, success, message } = response.data;
+            return commit('favBookSuccess', { book_data, success, message });
+        } catch (error) {
+            const errorMsg = apiErrorHandler(error);
+            commit('favBookFailure', errorMsg);
+            toast(errorMsg, 'error');
+        }
+    },
+    removeFavBookAction: async function({ commit }, { id }) {
+        try {
+            const server = instance();
+            const url = `/books/${id}/favourites`;
+            const response = await server.delete(url);
+            const { success, message } = response.data;
+            return commit('removeFavBookSuccess', { bookId: id, success, message });
+        } catch (error) {
+            const errorMsg = apiErrorHandler(error);
+            commit('favBookFailure', errorMsg);
             toast(errorMsg, 'error');
         }
     }
