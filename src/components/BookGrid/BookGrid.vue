@@ -11,7 +11,9 @@
             slot="mainContent" v-if="showBooks"
         >
             <div v-for="book in books" class="book" :key="book.id" >
-                <BookCard :book="book" @modalToOpen="handleModalEvent" />
+                <BookCard
+                    :book="book" @modalToOpen="handleModalEvent" :userId="userId"
+                />
                 <div class="book-title text-ellipsis">
                     {{book.title}}
                 </div>
@@ -36,6 +38,10 @@ export default {
     props: {
       books: {
           type: Array,
+          required: true
+      },
+      userId: {
+          type: [Number, String],
           required: true
       },
       gridTitle: { type: String },

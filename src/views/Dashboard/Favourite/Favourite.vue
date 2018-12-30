@@ -5,6 +5,7 @@
         @modalToOpen="handleModalEvent"
         noBooksMessage="No favourite book yet!"
         :showSpinner="bookLoading"
+        :userId="userInfo.id"
     />
 </template>
 

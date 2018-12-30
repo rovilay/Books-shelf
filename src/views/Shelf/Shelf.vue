@@ -6,6 +6,7 @@
                 customTitleClass="dashboard-title"
                 @modalToOpen="handleModalType"
                 noBooksMessage="No personal books yet!"
+                :userId="userInfo.id"
             />
         </div>
 
