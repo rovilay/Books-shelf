@@ -1,14 +1,19 @@
 import Vue from 'vue';
 import App from './App.vue';
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/index.css';
 import router from './routes';
-// import modalMixin from './Utils/modal-utils';
-import { currencyFilter } from './Utils'
+import store from './store';
+import { currencyFilter } from './Utils';
+
+
+Vue.use(VueToast);
 
 Vue.config.productionTip = false;
 Vue.filter('currency', currencyFilter);
-// Vue.mixin(modalMixin)
 
 new Vue({
   render: h => h(App),
   router,
+  store,
 }).$mount('#app')
