@@ -13,7 +13,10 @@
                         <span>Profile</span>
                     </router-link>
                 </li>
-                <li :class="{'bs-active': compare('Dashboard')}">
+                <li :class="{'bs-active': compare(
+                        ['Dashboard', 'Favourite', 'NewReleases', 'BestSellers'])
+                    }"
+                >
                     <router-link :to="{name: 'Dashboard'}">
                         <i class="material-icons">home</i>
                         <span>Home</span>
@@ -41,7 +44,7 @@ export default {
     name: 'SideBar',
     methods: {
         compare(routeName) {
-            return this.$route.name === routeName;
+            return routeName.includes(this.$route.name);
         },
         logOutUser: function() {
             localStorage.removeItem('bs-token');

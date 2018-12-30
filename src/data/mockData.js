@@ -1,7 +1,13 @@
+import image1 from '../assets/images/img1.jpeg';
+import image2 from '../assets/images/img2.jpeg';
+import image3 from '../assets/images/img3.jpeg';
+import image4 from '../assets/images/book-demo.jpeg';
+import image5 from '../assets/images/open-book.jpeg';
+
 const bookData = [
     {
         "id": 1,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image1}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "home alone",
@@ -10,7 +16,7 @@ const bookData = [
     },
     {
         "id": 2,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image2}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "Second Chance",
@@ -19,7 +25,7 @@ const bookData = [
     },
     {
         "id": 3,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image3}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "Harry Potter and the half blood prince",
@@ -28,7 +34,7 @@ const bookData = [
     },
     {
         "id": 4,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image4}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "harry potter and the prisoner of azkaban",
@@ -37,7 +43,7 @@ const bookData = [
     },
     {
         "id": 5,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image5}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "Without a silver spoon",
@@ -46,7 +52,7 @@ const bookData = [
     },
     {
         "id": 6,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image4}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "12,000 leagues under the sea",
@@ -55,7 +61,7 @@ const bookData = [
     },
     {
         "id": 7,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image3}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "Fire and Blood",
@@ -64,7 +70,7 @@ const bookData = [
     },
     {
         "id": 8,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image2}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "The perfect murder",
@@ -73,7 +79,7 @@ const bookData = [
     },
     {
         "id": 9,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image1}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "The old man and the gun",
@@ -82,7 +88,7 @@ const bookData = [
     },
     {
         "id": 10,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image5}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "Blood in the snow",
@@ -91,7 +97,7 @@ const bookData = [
     },
     {
         "id": 11,
-        "image": "https://via.placeholder.com/150.png",
+        "image": `${image3}`,
         "imageName": "150.png",
         "isbn": 12347869,
         "title": "the secret",

@@ -58,7 +58,6 @@ const actions = {
             const response = await server.post(
                 '/signup', { firstname, lastname, email, password }
             );
-            console.log('here');
             const { token, message, success } = response.data;
             localStorage.setItem('bs-token', token);
             const userDetails = decodeToken();
@@ -75,7 +74,7 @@ const actions = {
         try {
             commit('postUser');
 
-            const response = await server.post('/login', { email, password });
+            const response = await server().post('/login', { email, password });
             const { token, message, success } = response.data;
             localStorage.setItem('bs-token', token);
             const userDetails = decodeToken();
@@ -100,4 +99,4 @@ export default {
     state,
     mutations,
     actions
-}
+};

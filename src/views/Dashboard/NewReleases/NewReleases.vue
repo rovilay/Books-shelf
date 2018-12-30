@@ -1,24 +1,32 @@
 <template>
     <BookGrid
-        :books="bookData" gridTitle="new Releases" 
+        :books="newReleases" gridTitle="new Releases" 
         customTitleClass="dashboard-title"
         @modalToOpen="handleModalEvent"
+        :showSpinner="bookLoading"
     />
 </template>
 
 <script>
+import { mapState, mapActions, mapGetters } from 'vuex';
 import BookGrid from '../../../components/BookGrid/BookGrid.vue';
-import bookData from '../../../data/mockData';
 import modalMixins from '../../../mixins/modal-mixins';
 import authMixins from '../../../mixins/auth-mixins';
 
 export default {
     name: 'NewReleases',
     mixins: [modalMixins, authMixins],
-    data() {
-        return { bookData }
+    computed: {
+        ...mapState('books', { bookLoading: 'loading' }),
+        ...mapGetters('books', { newReleases: 'getNewReleases' }),
     },
-    components: { BookGrid }
+    methods: {
+        ...mapActions('books', { fetchBooks: 'fetchBooksAction' })
+    },
+    components: { BookGrid },
+    created: function() {
+      this.fetchBooks();
+    }
 }
 </script>
 
