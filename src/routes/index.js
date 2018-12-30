@@ -8,7 +8,7 @@ import BestSellers from '../views/Dashboard/BestSellers/BestSellers.vue';
 import NewReleases from '../views/Dashboard/NewReleases/NewReleases.vue';
 import AuthPage from '../views/AuthPage/AuthPage.vue';
 import Shelf from '../views/Shelf/Shelf.vue';
-import Profile from '../views/Profile/Profile.vue';
+import Explore from '../views/Explore/Explore.vue';
 
 Vue.use(Router);
 
@@ -62,9 +62,9 @@ export default new Router({
             component: Shelf
         },
         {
-            path: '/profile',
-            name: 'Profile',
-            component: Profile,
+            path: '/explore',
+            name: 'Explore',
+            component: Explore,
         },
     ]
 });

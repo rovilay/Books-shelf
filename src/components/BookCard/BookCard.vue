@@ -1,7 +1,10 @@
 <template>
     <div class="book-card" :style="{backgroundImage: 'url(' + book.image + ')'}">
-        <div class="book-action">
-            <a class="btn-floating btn-small waves-effect waves-light red">
+        <div v-if="showActionBar" class="book-action">
+            <a 
+                class="btn-floating btn-small waves-effect waves-light red"
+                @click="handleFavBook()"
+            >
                 <i class="material-icons">{{fav}}</i>
             </a>
             <a
@@ -24,12 +27,12 @@ import image2 from '../../assets/images/img2.jpeg';
 import image3 from '../../assets/images/img3.jpeg';
 import image4 from '../../assets/images/book-demo.jpeg';
 import image5 from '../../assets/images/open-book.jpeg';
+import { mapActions } from 'vuex';
 
 export default {
     name: 'BookCard',
     data() {
         return {
-            fav: 'favorite_border',
             bookId: this.book.id,
         }
     },
@@ -41,12 +44,20 @@ export default {
         }
     },
     methods: {
+        ...mapActions('books', {
+            addFavBook: 'addFavBookAction',
+            removeFavBook: 'removeFavBookAction'
+        }),
         getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
         },
         openEditModal: function() {
             this.$emit('modalToOpen', 'editBookModal', this.book)
-        }
+        },
+        handleFavBook() {
+            return this.book.favourite ? 
+            this.removeFavBook(this.book) : this.addFavBook(this.book);
+        },
     },
     computed: {
         randomImage() {
@@ -56,6 +67,13 @@ export default {
         },
         modal() {
             return document.getElementById(this.book.id)
+        },
+        fav() {            
+            return this.book.favourite || this.$route.name.includes('Favourite')
+                ? 'favorite' : 'favorite_border'
+        },
+        showActionBar() {
+            return this.$route.name !== 'Home';
         }
     },
 }
