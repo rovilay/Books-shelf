@@ -6,6 +6,7 @@
             @modalToOpen="handleModalEvent"
             :showSpinner="bookLoading"
             noBooksMessage="Nothing new yet"
+            :userId="userInfo.id"
         />
         <BookGrid
             :books="favourites" gridTitle="favourites"
@@ -13,7 +14,7 @@
             @modalToOpen="handleModalEvent"
             :showSpinner="bookLoading"
             noBooksMessage="No favourites yet"
-
+            :userId="userInfo.id"
         />
         <BookGrid
             :books="bestSellers" gridTitle="best sellers"
@@ -21,6 +22,7 @@
             @modalToOpen="handleModalEvent"
             :showSpinner="bookLoading"
             noBooksMessage="No Best sellers"
+            :userId="userInfo.id"
         />
     </div>
 </template>
@@ -30,6 +32,7 @@ import { mapState, mapActions, mapGetters } from 'vuex';
 import BookGrid from '../../components/BookGrid/BookGrid.vue';
 import modalMixins from '../../mixins/modal-mixins';
 import authMixins from '../../mixins/auth-mixins';
+import randomize from '../../Utils/randomize';
 
 export default {
     name: 'Dashboard',

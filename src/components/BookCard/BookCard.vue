@@ -13,7 +13,11 @@
             >
                 <i class="material-icons">edit</i>
             </a>
-            <a class="btn-floating btn-small waves-effect waves-light red">
+            <a
+                class="btn-floating btn-small waves-effect waves-light red"
+                v-if="showDeleteBtn"
+                @click="handleDeleteBook()"
+            >
                 <i class="material-icons">delete</i>
             </a>
         </div>
@@ -41,16 +45,18 @@ export default {
             type: Object,
             required: true,
             validator: bookValidator
+        },
+        userId: {
+            type: [String, Number],
+            required: true,
         }
     },
     methods: {
         ...mapActions('books', {
             addFavBook: 'addFavBookAction',
-            removeFavBook: 'removeFavBookAction'
+            removeFavBook: 'removeFavBookAction',
+            deleteBook: 'deleteBookAction',
         }),
-        getRandomInt(max) {
-            return Math.floor(Math.random() * Math.floor(max));
-        },
         openEditModal: function() {
             this.$emit('modalToOpen', 'editBookModal', this.book)
         },
@@ -58,13 +64,12 @@ export default {
             return this.book.favourite ? 
             this.removeFavBook(this.book) : this.addFavBook(this.book);
         },
+        handleDeleteBook() {
+            const ans = confirm('Are you sure you want to delete this book?');
+            if (ans) return this.deleteBook(this.book);
+        },
     },
     computed: {
-        randomImage() {
-            const images = [image1, image2, image3, image4, image5];
-            const randInt = this.getRandomInt(images.length);
-            return images[randInt]
-        },
         modal() {
             return document.getElementById(this.book.id)
         },
@@ -74,6 +79,11 @@ export default {
         },
         showActionBar() {
             return this.$route.name !== 'Home';
+        },
+        showDeleteBtn() {
+           const { user } = this.book;
+           if (user) return user.id === this.userId;
+           return false;
         }
     },
 }

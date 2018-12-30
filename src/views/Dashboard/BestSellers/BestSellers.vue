@@ -4,6 +4,7 @@
         customTitleClass="dashboard-title"
         @modalToOpen="handleModalEvent"
         :showSpinner="bookLoading"
+        :userId="userInfo.id"
     />
 </template>
 
