@@ -1,12 +1,16 @@
 <template>
     <Layout show-add-btn @modalToOpen="handleModalType">
-        <div class="content-main" slot="mainContent">
+        <div class="content-main" slot="mainContent" v-if="!bookLoading">
             <BookGrid
                 :books="bookData" gridTitle="My Shelf" 
                 customTitleClass="dashboard-title"
                 @modalToOpen="handleModalType"
+                noBooksMessage="No personal books yet!"
             />
         </div>
+
+        <Spinner v-if="bookLoading" slot="mainContent" />       
+
         <Modal
             slot="mainContent" modal-title="Add Book"
             :modal-id="modalId" :visible="openAddModal()"
@@ -32,22 +36,30 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import Layout from '../../components/Layout/index.vue';
 import BookGrid from '../../components/BookGrid/BookGrid.vue';
 import Modal from '../../components/Modal/index.vue';
 import BookForm from '../../components/BookForm/index.vue';
-import bookData from '../../data/mockData';
+import Spinner from '../../components/Spinner/PageSpinner.vue';
 import bookMixins from '../../mixins/book-mixins';
 import modalMixins from '../../mixins/modal-mixins';
 import authMixins from '../../mixins/auth-mixins';
 
 export default {
     name: 'Shelf',
-  mixins: [bookMixins, modalMixins, authMixins],
-    data() {
-        return { bookData }
+    mixins: [bookMixins, modalMixins, authMixins],
+    components: { Layout, BookGrid, Modal, BookForm, Spinner },
+    computed: {
+        ...mapState('books', { bookData: 'books', bookLoading: 'loading' }),
     },
-    components: { Layout, BookGrid, Modal, BookForm }
+    methods: {
+        ...mapActions('books', { 
+            fetchBooks: 'fetchBooksAction' })
+    },
+    created: function() {
+      this.fetchBooks(true);
+    }
 }
 </script>
 

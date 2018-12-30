@@ -35,7 +35,7 @@
                         id="book-image"
                         @change="uploadImage"
                     >
-                    <span v-show="book.imageName">{{book.imageName}}</span>
+                    <span v-show="book.image_name">{{book.image_name}}</span>
                 </div>
                     <div class="progress bs-progress bs-color-bg-deep" v-show="uploading">
                         <div class="indeterminate bs-color-bg"></div>

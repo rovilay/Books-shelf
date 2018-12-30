@@ -1,7 +1,23 @@
 .bs-spinner {
-    // border: 1px solid blue;
     margin: 10px 0 0 10px;
     .bs-color {
-        border-color: snow 
+        border-color: snow;
     }
 };
+
+.bs-spinner-page {
+    margin: 50px auto;
+    .bs-color {
+        border-color: #70d179;
+    }
+}
+
+.bs-btn-spinner-small {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .bs-btn-spinner-big {
+    width: 18px !important;
+    height: 18px !important;
+  }

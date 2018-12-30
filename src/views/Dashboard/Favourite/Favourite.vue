@@ -3,22 +3,30 @@
         :books="bookData" gridTitle="favourites" 
         customTitleClass="dashboard-title"
         @modalToOpen="handleModalEvent"
+        noBooksMessage="No favourite book yet!"
+        :showSpinner="bookLoading"
     />
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import BookGrid from '../../../components/BookGrid/BookGrid.vue';
-import bookData from '../../../data/mockData';
 import modalMixins from '../../../mixins/modal-mixins';
 import authMixins from '../../../mixins/auth-mixins';
 
 export default {
     name: 'Favourite',
     mixins: [modalMixins, authMixins],
-    data() {
-        return { bookData }
+    components: { BookGrid },
+    computed: {
+        ...mapState('books', { bookData: 'books', bookLoading: 'loading' }),
     },
-    components: { BookGrid }
+    methods: {
+        ...mapActions('books', { fetchFavBooks: 'fetchFavBooksAction' })
+    },
+    created: function() {
+      this.fetchFavBooks();
+    }
 }
 </script>
 

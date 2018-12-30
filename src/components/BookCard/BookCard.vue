@@ -1,5 +1,5 @@
 <template>
-    <div class="book-card" :style="{backgroundImage: 'url(' + randomImage + ')'}">
+    <div class="book-card" :style="{backgroundImage: 'url(' + book.image + ')'}">
         <div class="book-action">
             <a class="btn-floating btn-small waves-effect waves-light red">
                 <i class="material-icons">{{fav}}</i>
