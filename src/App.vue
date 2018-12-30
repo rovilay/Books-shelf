@@ -10,5 +10,5 @@ export default {
 }
 </script>
 
-<style lang='scss' src='./components/Shared/Styles.scss'>
+<style lang='scss' src='./components/Styles.scss'>
 </style>
