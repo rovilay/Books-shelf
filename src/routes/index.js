@@ -7,6 +7,7 @@ import Favourite from '../views/Dashboard/Favourite/Favourite.vue';
 import BestSellers from '../views/Dashboard/BestSellers/BestSellers.vue';
 import NewReleases from '../views/Dashboard/NewReleases/NewReleases.vue';
 import AuthPage from '../views/AuthPage/AuthPage.vue';
+import NotFound from '../views/NotFoundPage/index.vue';
 import Shelf from '../views/Shelf/Shelf.vue';
 import Explore from '../views/Explore/Explore.vue';
 
@@ -66,6 +67,15 @@ export default new Router({
             name: 'Explore',
             component: Explore,
         },
+        {
+            path: '/not-found',
+            name: 'NotFound',
+            component: NotFound
+        },
+        {
+            path: '*',
+            redirect: '/not-found',
+        }
     ]
 });
  

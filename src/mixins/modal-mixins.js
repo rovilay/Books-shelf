@@ -1,3 +1,5 @@
+import { mapActions } from 'vuex';
+
 export default {
     data: function() {
         return {
@@ -14,6 +16,9 @@ export default {
         }
     },
     methods: {
+        ...mapActions('books', {
+            updateNewBook: 'updateNewBookAction',
+        }),
         handleModalType: function(modalType, book) {
             this.modalType = modalType;
             this.openModal = true;
@@ -22,13 +27,14 @@ export default {
         handleCloseModal: function() {
             this.modalType = null;
             this.openModal = null;
-            this.book = {
-                    title: null,
-                    price: null,
-                    isbn: null,
-                    image: null,
-                    imageName: null
+            const book = {
+                title: '',
+                price: '',
+                isbn: '',
+                image: '',
+                image_name: ''
             }
+            this.updateNewBook(book);
         },
         handleModalEvent: function(modalType, book) {
             this.$emit('modalToOpen', modalType, book)

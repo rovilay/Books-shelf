@@ -41,8 +41,8 @@ export default {
           required: true
       },
       userId: {
-          type: [Number, String],
-          required: true
+            type: [Number, String],
+            default: ''
       },
       gridTitle: { type: String },
       fullWidth: { type: Boolean, default: false },

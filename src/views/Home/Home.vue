@@ -2,9 +2,11 @@
     <Layout show-top-header>
         <div class="showcase" slot="mainContent">
             <h1>So many books, so little time...</h1>
-            <button class="signup waves-effect waves-light btn-large bs-btn">
-                Explore!
-            </button>
+            <router-link :to="{ name: 'Login' }">
+                <button class="signup waves-effect waves-light btn-large bs-btn">
+                    Explore!
+                </button>
+            </router-link>
         </div>
         <BookGrid
             gridTitle="New Releases" :books="newReleases" 

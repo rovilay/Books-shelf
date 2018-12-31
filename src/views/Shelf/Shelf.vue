@@ -20,6 +20,7 @@
             <BookForm 
                 slot="modal-content" buttonLabel="Send"
                 @newBook="updateBookDetails" :book="book"
+                @closeModal="handleCloseModal"
             />
         </Modal>
         <Modal
@@ -31,6 +32,7 @@
             <BookForm 
                 slot="modal-content" buttonLabel="Update"
                 @newBook="updateBookDetails" :book="book"
+                @closeModal="handleCloseModal"
             />
         </Modal>
     </Layout>

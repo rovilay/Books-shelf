@@ -4,6 +4,14 @@ import mutations from './mutations';
 
 const state = {
     books: [],
+    newBook: {
+        title: '',
+        price: '',
+        isbn: '',
+        image: '',
+        image_name: '',
+    },
+    postingBook: false,
     message: '',
     loading: false,
     success: false,
