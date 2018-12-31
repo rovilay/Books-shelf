@@ -15,9 +15,7 @@
 
 <script>
 import Layout from '../../components/Layout/index.vue';
-import BookGrid from '../../components/BookGrid/BookGrid.vue';
 import bookData from '../../data/mockData';
-import { validateToken } from '../../Utils/token'
 
 export default {
   name: 'NotFound',

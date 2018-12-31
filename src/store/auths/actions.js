@@ -10,7 +10,7 @@ const actions = {
         try {
             commit('postUser');
 
-            const response = await server.post(
+            const response = await server().post(
                 '/signup', { firstname, lastname, email, password }
             );
             const { token, message, success } = response.data;
@@ -28,7 +28,6 @@ const actions = {
     logUserIn: async function({ commit }, { email, password }) {
         try {
             commit('postUser');
-
             const response = await server().post('/login', { email, password });
             const { token, message, success } = response.data;
             localStorage.setItem('bs-token', token);

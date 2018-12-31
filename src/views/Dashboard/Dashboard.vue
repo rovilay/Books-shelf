@@ -32,7 +32,6 @@ import { mapState, mapActions, mapGetters } from 'vuex';
 import BookGrid from '../../components/BookGrid/BookGrid.vue';
 import modalMixins from '../../mixins/modal-mixins';
 import authMixins from '../../mixins/auth-mixins';
-import randomize from '../../Utils/randomize';
 
 export default {
     name: 'Dashboard',
