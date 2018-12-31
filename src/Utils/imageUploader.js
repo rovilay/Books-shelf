@@ -1,8 +1,19 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-// import moveProgressBar from './moveProgressBar';
 
 dotenv.config();
+export const checkFileSize = (file) => {
+    if (file.files[0]) {
+      const { size } = file.files[0];
+      if (size > 1500000) {
+        file.value = '';
+        return false;
+      }
+      return true;
+    }
+    return null; // if no file
+}
+
 /**
  * Gets image file and uploads to cloudinary
  *

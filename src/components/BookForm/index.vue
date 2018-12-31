@@ -8,7 +8,9 @@
                         class="autocomplete" required
                         v-model="book.title"
                     >
-                    <label for="autocomplete-input">Book Title</label>
+                    <label for="autocomplete-input">
+                        Book Title <span class="danger">*</span>
+                    </label>
                 </div>
                 <div class="input-field col s12">
                     <input
@@ -17,7 +19,9 @@
                         v-model="book.price"
                         min="0.00" step="0.01"
                     >
-                    <label for="autocomplete-input">Price</label>
+                    <label for="autocomplete-input">
+                        Price<span class="danger">*</span>
+                    </label>
                 </div>
                 <div class="input-field col s12">
                     <input
@@ -25,17 +29,21 @@
                         class="autocomplete" required
                         v-model="book.isbn"
                     >
-                    <label for="autocomplete-input">Isbn</label>
+                    <label for="autocomplete-input">
+                        Isbn <span class="danger">*</span>
+                    </label>
                 </div>
                 <div class="bs-img-field">
                     <label for="img-title">image</label>
                     <input
-                        type="file" required
+                        type="file"
                         minlength="7"
                         id="book-image"
-                        @change="uploadImage"
+                        @change="handleImageUpload"
                     >
-                    <span v-show="book.image_name">{{book.image_name}}</span>
+                    <span v-show="imageName || book.image_name">
+                        {{imageName || book.image_name}}
+                    </span>
                 </div>
                     <div class="progress bs-progress bs-color-bg-deep" v-show="uploading">
                         <div class="indeterminate bs-color-bg"></div>
@@ -43,11 +51,16 @@
                     <div class="error danger" v-if="uploadError">
                         Image upload failed!
                     </div>
+                    <div class="error danger" v-if="showImageSizeError">
+                        Image size must not exceed 1.5 mb!
+                    </div>
                 <button
                     type="submit" 
                     class="waves-effect waves-light btn-large bs-btn auth-btn"
+                    :disabled="!validBook"
                 >
-                    {{buttonLabel}} <i class="material-icons right">send</i>
+                    {{buttonLabel}} <i v-show="!posting" class="material-icons right">send</i>
+                    <Spinner v-show="posting" />
                 </button>
             </form>
         </div>
@@ -55,8 +68,9 @@
 </template>
 
 <script>
-/* eslint no-console: 0 */
-import imageUploader from '../../Utils/imageUploader';
+import { mapState, mapActions } from 'vuex';
+import imageUploader, { checkFileSize } from '../../Utils/imageUploader';
+import Spinner from '../Spinner/index.vue';
 
 export default {
     name: 'BookForm',
@@ -65,19 +79,22 @@ export default {
             uploading: false,
             imageName: null,
             uploadError: null,
+            validFileSize: null
         }
     },
+    components: { Spinner },
     methods: {
-        uploadImage: async function(e) {
-            const fileInput = e.target;
-            const fileInputId = fileInput.id;
+        ...mapActions('books', {
+            updateNewBook: 'updateNewBookAction',
+            updateBook: 'updateBookAction',
+            postNewBook: 'postNewBookAction',
+        }),
+        uploadImage: async function(fileInputId) {
             this.uploading = true;
             const response = await imageUploader(fileInputId);
-                console.log(response);
 
             if (response && response.status === 200) {
-                console.log(response);
-                this.book.imageName = response.data.original_filename;
+                this.book.image_name = response.data.original_filename;
                 this.imageName = response.data.original_filename;
                 this.book.image = response.data.secure_url;
                 this.uploading = false;
@@ -86,22 +103,31 @@ export default {
                 this.uploadError = true;                
             }
         },
+        handleImageUpload: async function(e) {
+            const fileInput = e.target;
+            this.validFileSize = checkFileSize(fileInput);
+
+            if (this.validFileSize) {
+                const fileInputId = fileInput.id;
+                await this.uploadImage(fileInputId);
+            }
+        },
         submitForm: function(e) {
             e.preventDefault();
-            const book = {
-                title: this.title,
-                price: this.price,
-                isbn: this.isbn,
-                image: this.imageUrl
+            if (this.validBook) {
+                this.updateNewBook(this.book);
+                const res = this.buttonLabel.toLowerCase().match('update') ?
+                    this.updateBook(this.book.id) : this.postNewBook();
+                
+                res.then(val => {
+                    if(val) this.$emit('closeModal');
+                });
             }
-            this.$emit('newBook', book);
-            console.log('form submitted'); // eslint-disable-line
         },
         onEditBook: function() {
             if (this.book) {
                 const { title, isbn, price } = this.book;
                 this.title = title;
-                // this.image = image,
                 this.isbn = isbn;
                 this.price = price;
             }
@@ -109,12 +135,17 @@ export default {
     },
     props: {
         buttonLabel: { type: String, required: true },
-        book: { type: Object, required: true }
     },
-    // created: function() {
-    //     console.log('this books', this.book);
-    //     this.onEditBook();
-    // }
+    computed: {
+        ...mapState('books', { book: 'newBook', posting: 'postingBook' }),
+        showImageSizeError: function() {
+            return this.validFileSize === false && !this.uploading;
+        },
+        validBook: function() {
+            const { title, price, isbn } = this.book;
+            return title && price && isbn;
+        }
+    }
 }
 </script>
 

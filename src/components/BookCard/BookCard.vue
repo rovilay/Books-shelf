@@ -9,13 +9,14 @@
             </a>
             <a
                 class="btn-floating btn-small waves-effect waves-light red"
+                v-if="showBtn"
                 @click="openEditModal"
             >
                 <i class="material-icons">edit</i>
             </a>
             <a
                 class="btn-floating btn-small waves-effect waves-light red"
-                v-if="showDeleteBtn"
+                v-if="showBtn"
                 @click="handleDeleteBook()"
             >
                 <i class="material-icons">delete</i>
@@ -25,13 +26,8 @@
 </template>
 
 <script>
-import { bookValidator } from '../../Utils';
-import image1 from '../../assets/images/img1.jpeg';
-import image2 from '../../assets/images/img2.jpeg';
-import image3 from '../../assets/images/img3.jpeg';
-import image4 from '../../assets/images/book-demo.jpeg';
-import image5 from '../../assets/images/open-book.jpeg';
 import { mapActions } from 'vuex';
+import { bookValidator } from '../../Utils';
 
 export default {
     name: 'BookCard',
@@ -49,6 +45,7 @@ export default {
         userId: {
             type: [String, Number],
             required: true,
+            default: ''
         }
     },
     methods: {
@@ -56,9 +53,11 @@ export default {
             addFavBook: 'addFavBookAction',
             removeFavBook: 'removeFavBookAction',
             deleteBook: 'deleteBookAction',
+            addBookForEdit: 'updateNewBookAction',
         }),
         openEditModal: function() {
-            this.$emit('modalToOpen', 'editBookModal', this.book)
+            this.addBookForEdit(this.book)
+            this.$emit('modalToOpen', 'editBookModal')
         },
         handleFavBook() {
             return this.book.favourite ? 
@@ -70,9 +69,6 @@ export default {
         },
     },
     computed: {
-        modal() {
-            return document.getElementById(this.book.id)
-        },
         fav() {            
             return this.book.favourite || this.$route.name.includes('Favourite')
                 ? 'favorite' : 'favorite_border'
@@ -80,7 +76,7 @@ export default {
         showActionBar() {
             return this.$route.name !== 'Home';
         },
-        showDeleteBtn() {
+        showBtn() {
            const { user } = this.book;
            if (user) return user.id === this.userId;
            return false;

@@ -69,7 +69,44 @@ const actions = {
             commit('bookActionsFailure', errorMsg);
             toast(errorMsg, 'error');
         }
-    }
+    },
+    updateNewBookAction: function({ commit }, bookData) {
+        return commit('updateNewBook', bookData);
+    },
+    postNewBookAction: async function({ state, commit }) {
+        try {
+            commit('postBook');
+            const server = instance();
+            const url = '/books';
+            const response = await server.post(url, state.newBook);
+            const { book_data, success, message } = response.data;
+            commit('postNewBookSuccess', { book_data, success, message });
+            const a = new Promise((resolve) => resolve(true));
+            toast(message, 'success');
+            return a;
+        } catch (error) {
+            const errorMsg = apiErrorHandler(error);
+            commit('bookActionsFailure', errorMsg);
+            toast(errorMsg, 'error');
+        }
+    },
+    updateBookAction: async function({ state, commit }, bookId) {
+        try {
+            commit('postBook');
+            const server = instance();
+            const url = `/books/${bookId}`;
+            const response = await server.put(url, state.newBook);
+            const { book_data, success, message } = response.data;
+            commit('updateBookSuccess', { book_data, success, message });
+            const a = new Promise((resolve) => resolve(true));
+            toast(message, 'success');
+            return a;
+        } catch (error) {
+            const errorMsg = apiErrorHandler(error);
+            commit('bookActionsFailure', errorMsg);
+            toast(errorMsg, 'error');
+        }
+    },
 };
 
 export default actions;

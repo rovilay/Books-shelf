@@ -1,7 +1,7 @@
 <template>
     <div class="container layout structure">
         <header v-if="showTopHeader" class="section header">
-            <NavBar />
+            <NavBar :showAuthBtns="showAuthBtns" />
         </header>
         <main class="section main-content" :class="{ 'full-page': !showTopHeader }">
             <div class="container">
@@ -73,7 +73,8 @@ export default {
   },
   props: {
       showTopHeader: { type: Boolean, default: false },
-      showAddBtn: { type: Boolean, default: false }
+      showAddBtn: { type: Boolean, default: false },
+      showAuthBtns: { type: Boolean, default: true }
   }
 }
 </script>

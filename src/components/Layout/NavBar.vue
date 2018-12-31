@@ -5,7 +5,7 @@
                 Book-Shelf
             </router-link>
         </div>
-        <div class="auth">
+        <div v-show="showAuthBtns" class="auth">
             <button @click="pushToLogin" class="login waves-effect waves-light btn bs-btn-light">
                 Log in
             </button>
@@ -20,6 +20,9 @@
 <script>
 export default {
     name: 'NavBar',
+    props: {
+        showAuthBtns: { type: Boolean, required: true }
+    },
     methods: {
         pushToLogin() {
             this.$router.push({ name: 'Login' });
@@ -27,6 +30,6 @@ export default {
         pushToSignup() {
             this.$router.push({ name: 'Signup' });
         },
-    }
+    },
 }
 </script>
