@@ -28,6 +28,7 @@
                         type="number" id="autocomplete-input 3"
                         class="autocomplete" required
                         v-model="book.isbn"
+                        max="99999999"
                     >
                     <label for="autocomplete-input">
                         Isbn <span class="danger">*</span>
